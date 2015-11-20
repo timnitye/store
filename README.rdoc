@@ -5,4 +5,6 @@ Rails store application
 Rails store application
 Rails store application
 
+
+
 <tt>rake doc:app</tt>.
