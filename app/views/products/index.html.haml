@@ -6,5 +6,5 @@
 			%p.description= p.description
 			%p.price= number_to_currency(p.price, :unit => "$")
 			.btn.btn-default.btn-xs= link_to 'Details', '/products/'+ p.id.to_s
-			.btn.btn-default.btn-xs= link_to 'Add to Cart', products_url
+			.btn.btn-default.btn-xs= link_to 'Add to Cart', add_to_cart_url(product_id: p.id) 
 .btn.btn-default= link_to 'Add Product', products_new_url 

@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  get 'products/new' => 'products#new'
+  get 'add_to_cart' => 'add_to_cart#index' 
+
+  get 'shopping_cart' => 'shopping_cart#index'
+
+  get 'signin' => 'sessions#new', as: :signin
+  resources :sessions  
+
   get 'products/new' => 'products#new'
   root 'products#index'
   resources :products

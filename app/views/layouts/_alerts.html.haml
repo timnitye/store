@@ -1,0 +1,6 @@
+- unless flash[:alert].nil?
+	.alert.alert-dismissible.alert-danger
+		%button.close{"data-dismiss" => "alert", :type => "button"} &#x2716;
+		%strong Oh snap!
+		%a.alert-link{:href => "#"}
+			= flash[:alert]

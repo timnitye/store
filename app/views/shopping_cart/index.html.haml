@@ -1,0 +1,8 @@
+%h1 Shopping Cart
+%table.table.items
+	-@items.each do |i|
+		%tr.item
+			%td.name= i.product.name
+			%td.quantity= i.quantity
+			%td.price= i.price
+
