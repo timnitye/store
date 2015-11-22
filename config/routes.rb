@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-
   get 'products/new' => 'products#new'
-
+  get 'products/new' => 'products#new'
   root 'products#index'
   resources :products
 

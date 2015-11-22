@@ -1,9 +1,13 @@
 = form_for @product do |f|
-	%h3 Name:
-	= f.text_field :name
-	%h3 Description:
-	= f.text_area :description
-	%h3 Price:
-	= f.text_field :price, percision: 5, scale: 2
-	= f.submit
+	.form-group
+		%h3 Name:
+		= f.text_field :name
+	.form-group
+		%h3 Description:
+		= f.text_area :description, rows: 5 
+	.form-group
+		%h3 Price:
+		= f.text_field :price, percision: 5, scale: 2
+	.form-group
+		= f.submit
 

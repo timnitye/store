@@ -1,3 +1,10 @@
-%h1 Products#index
-%p Find me in app/views/products/index.html.erb
-= link_to 'Add Product', products_new_url 
+%h1 Products
+.products.row
+	- @products.each do |p|
+		.product.col-xs-6.col-sm-4.col-md-3
+			%h3.name= p.name
+			%p.description= p.description
+			%p.price= number_to_currency(p.price, :unit => "$")
+			.btn.btn-default.btn-xs= link_to 'Details', '/products/'+ p.id.to_s
+			.btn.btn-default.btn-xs= link_to 'Add to Cart', products_url
+.btn.btn-default= link_to 'Add Product', products_new_url 
