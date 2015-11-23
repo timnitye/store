@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   get 'shopping_cart' => 'shopping_cart#index'
 
-  get 'signin' => 'sessions#new', as: :signin
+  get    'signin'  => 'sessions#new',     as: :signin
+  delete 'signout' => 'sessions#destroy', as: :signout
+
   resources :sessions  
 
   get 'products/new' => 'products#new'

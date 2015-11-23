@@ -12,4 +12,5 @@
 
 class Product < ActiveRecord::Base
 	has_many :items
+	mount_uploader :photo, ProductUploader
 end

@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   	# compare password to database password
 	  	
 			# if sucess go to product page
-      SESSION[:current_user_id] = @user.id
+      session[:current_user_id] = @user.id
       redirect_to products_url
   	else
 
@@ -24,5 +24,11 @@ class SessionsController < ApplicationController
   		redirect_to signin_url
 
   	end
+  end
+
+  def destroy
+    #logout
+    session[:current_user_id] = nil
+    redirect_to root_url
   end
 end
