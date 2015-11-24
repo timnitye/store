@@ -12,9 +12,10 @@
 
 class Item < ActiveRecord::Base
   belongs_to :product
-  belongs_to :user
+  belongs_to :cart
 
   def price
   	product.price * quantity if product
   end
+
 end

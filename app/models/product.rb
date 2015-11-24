@@ -8,6 +8,7 @@
 #  price       :decimal(5, 2)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  photo       :string
 #
 
 class Product < ActiveRecord::Base
