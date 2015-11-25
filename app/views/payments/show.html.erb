@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @payment.type %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @payment.name %>
+</p>
+
+<p>
+  <strong>Card number:</strong>
+  <%= @payment.card_number %>
+</p>
+
+<p>
+  <strong>Exp date:</strong>
+  <%= @payment.exp_date %>
+</p>
+
+<p>
+  <strong>Cvv:</strong>
+  <%= @payment.cvv %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @payment.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @payment.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @payment.state %>
+</p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @payment.zip %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @payment.user %>
+</p>
+
+<p>
+  <strong>Cart:</strong>
+  <%= @payment.cart %>
+</p>
+
+<%= link_to 'Edit', edit_payment_path(@payment) %> |
+<%= link_to 'Back', payments_path %>

@@ -14,4 +14,4 @@
 				
 				.form-group
 					= f.submit 'signin', class: 'btn btn-primary btn-lg'
-					
+				%input{type: 'hidden', name: 'next_action', value: "#{@next_action}"}

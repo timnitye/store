@@ -40,4 +40,5 @@ class AddToCartController < ApplicationController
 
 		redirect_to products_url
 	end
+	
 end

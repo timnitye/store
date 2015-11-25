@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
+  
+
+  get 'products/new' => 'products#new'
+  root 'products#index'
+  get 'checkout' => 'checkout#index'
   get 'add_to_cart' => 'add_to_cart#index' 
-
   get 'shopping_cart' => 'shopping_cart#index'
-
   get    'signin'  => 'sessions#new',     as: :signin
   delete 'signout' => 'sessions#destroy', as: :signout
 
   resources :sessions  
-
-  get 'products/new' => 'products#new'
-  root 'products#index'
+  resources :shippings, only: [:new, :create]
+  resources :payments, only: [:new, :create]
   resources :products
 
   # The priority is based upon order of creation: first created -> highest priority.

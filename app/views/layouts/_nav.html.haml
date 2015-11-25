@@ -10,8 +10,8 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li.active
-          %a{:href => "#"}
-            Link
+          =link_to products_url, class: 'btn btn-primary' do
+            Products
             %span.sr-only (current)
         %li
           %a{:href => "#"} Link
@@ -37,6 +37,8 @@
           %input.form-control{:placeholder => "Search", :type => "text"}/
         %button.btn.btn-default{:type => "submit"} Submit
       %ul.nav.navbar-nav.navbar-right
+        %li
+          =link_to 'Add Product', products_new_url if session[:current_user_id]
         %li
           =link_to 'Shopping Cart', shopping_cart_url
         %li
