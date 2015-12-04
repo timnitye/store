@@ -1,8 +1,12 @@
-%h1 Product Detail
-=link_to 'Edit', edit_product_url, class: 'btn btn-primary' if session[:current_user_id]
-=link_to 'Delete', @product, confirm: 'Are you sure?', method: :delete, class: 'btn btn-primary' if session[:current_user_id]
+.row
+  .col-md-6
+    =image_tag @product.photo
+    - if admin?
+      =link_to 'Edit', edit_product_url, class: 'btn btn-primary' if session[:current_user_id]
+      =link_to 'Delete', @product, confirm: 'Are you sure?', method: :delete, class: 'btn btn-primary' if session[:current_user_id]
+  .col-md-6
+    %h2.name= @product.name
 
-%h2.name= @product.name
-=image_tag @product.photo      
-%p.description= @product.description
-%p.price= @product.price      
+    %p.description= @product.description
+    %p.price= number_to_currency @product.price
+    = link_to 'BUY', add_to_cart_url(product_id: @product.id), class: 'btn btn-md buy-btn' 

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'checkout/index'
 
   get 'products/new' => 'products#new'
   root 'products#index'
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   resources :shippings, only: [:new, :create]
   resources :payments, only: [:new, :create]
   resources :products
+  resources :order_confirmations, only: [:index, :show, :create]
+  resources :orders, only: [:index, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,17 +1,26 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy] 
+  before_action :authorize, except: [:index, :show]
 
   def index
   	@products = Product.all
   end
 
   def new
-  	@product = Product.new
+    if current_user && current_user.has_role?('admin')
+    	@product = Product.new
+    else
+      redirect_to signin_url
+    end
   end
 
   def create
-    Product.create(product_params)
-  	redirect_to products_url #Product#index
+    if current_user && current_user.has_role?('admin')
+      Product.create(product_params)
+    	redirect_to products_url #Product#index
+    else
+      redirect_to signin_url
+    end
   end
 
   def show
@@ -36,5 +45,12 @@ class ProductsController < ApplicationController
 
   def find_product
     @product = Product.find(params[:id])
+  end
+
+  def authorize
+    unless admin?
+      redirect_to signin_url
+      return false
+    end
   end
 end

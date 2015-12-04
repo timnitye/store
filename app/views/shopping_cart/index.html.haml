@@ -1,7 +1,6 @@
 %h1 Shopping Cart
-
 - if @items
-	%table.table.items
+	%table.table-bordered.striped
 		-@items.each do |i|
 			%tr.item
 				%td.name= i.product.name

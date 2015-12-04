@@ -16,4 +16,9 @@
 class Shipping < ActiveRecord::Base
   belongs_to :user
   belongs_to :cart
+
+  def full_address
+	"address: #{address} \n
+	#{city}, #{state} #{zip}"
+  end
 end

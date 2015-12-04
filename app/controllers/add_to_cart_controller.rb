@@ -18,6 +18,8 @@ class AddToCartController < ApplicationController
 		#or create new one
 		cart = Cart.new unless cart
 
+		cart.user = current_user
+
 		#find first item in cart that matches product_id from params
 		item = cart.items.select{|i| i.product_id == product_id}.first
 		
@@ -34,10 +36,9 @@ class AddToCartController < ApplicationController
 		end
 		
 		cart.save
-		
 		#store cart_id in session for later use
 		session[:cart_id] = cart.id
-
+		
 		redirect_to products_url
 	end
 	

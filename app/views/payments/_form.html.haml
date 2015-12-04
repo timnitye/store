@@ -1,0 +1,47 @@
+= form_for(@payment) do |f|
+  - if @payment.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@payment.errors.count, "error")
+        prohibited this payment from being saved:
+      %ul
+        - @payment.errors.full_messages.each do |message|
+          %li= message
+  .form-group
+    = f.label :card_type
+    
+    = f.number_field :card_type, class: 'form-control'
+  .form-group
+    = f.label :name
+    
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :card_number
+    
+    = f.text_field :card_number, class: 'form-control'
+  .form-group
+    = f.label :exp_date
+    
+    = f.date_select :exp_date, class: 'form-control'
+  .form-group
+    = f.label :cvv
+    
+    = f.number_field :cvv, class: 'form-control'
+  .form-group
+    = f.label :address
+    
+    = f.text_area :address, class: 'form-control'
+  .form-group
+    = f.label :city
+    
+    = f.text_field :city, class: 'form-control'
+  .form-group
+    = f.label :state
+    
+    = f.text_field :state, class: 'form-control'
+  .form-group
+    = f.label :zip
+    
+    = f.text_field :zip, class: 'form-control'
+  .actions
+    = f.submit 'Next', class: 'btn btn-primary'

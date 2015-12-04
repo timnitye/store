@@ -1,0 +1,37 @@
+%h1 Order Confirmed
+%h3 Thank you for your order!
+
+.cart
+	%table.table-bordered.table-striped.col-sm-12
+		%tr
+			%th Name
+			%th Quantity
+			%th Price
+		- cart.items.each do |i|
+			%tr
+				%td= i.product.name
+				%td= i.quantity
+				%td= i.price
+
+.row
+	.payment.col-sm-6
+		.well
+			%h2 Payment
+			%div= cart.payment.card_type       
+			%div= cart.payment.name       
+			%div= cart.payment.card_number
+			%div= cart.payment.exp_date   
+			%div= cart.payment.cvv        
+			%div= cart.payment.address    
+			%div= cart.payment.city       
+			%div= cart.payment.state      
+			%div= cart.payment.zip         
+	.shipping.col-sm-6
+		.well
+			%h2 Shipping
+			%div= cart.shipping.address
+			%div= cart.shipping.city   
+			%div= cart.shipping.state  
+			%div= cart.shipping.zip
+.buttons
+	= link_to 'Continue Shopping', '', class: 'btn btn-default'

@@ -1,15 +1,35 @@
+/ = form_for @product, html: { multipart: true } do |f|
+/   .form-group.row
+/     %h3.col-xs-6 Name:
+/   .row
+/     = f.text_field :name, :class => 'col-xs-6 col-offset-xs-3'
+/   .form-group.row
+/     %h3.col-xs-6 Description:
+/   .row
+/     = f.text_area :description, rows: 5, :class => 'col-xs-6 col-offset-xs-3'
+/   .form-group.row
+/     %h3.col-xs-6 Price:
+/   .row
+/     = f.text_field :price, percision: 5, scale: 2, :class => 'col-xs-6 col-offset-xs-3'
+/   .form-group.row
+/     =f.file_field :photo
+/   .form-group.row
+/     = f.submit "#{action_name}", :class => 'btn btn-primary'
+
 = form_for @product, html: { multipart: true } do |f|
-	.form-group
-		%h3 Name:
-		= f.text_field :name
-	.form-group
-		%h3 Description:
-		= f.text_area :description, rows: 5 
-	.form-group
-		%h3 Price:
-		= f.text_field :price, percision: 5, scale: 2
-	.form-group
-		=f.file_field :photo
-	.form-group
-		= f.submit
- 	
+  .form-group.row
+    %h3 Name:
+  .row
+    = f.text_field :name, :class => 'col-xs-6 col-offset-xs-3'
+  .form-group.row
+    %h3 Description:
+  .row
+    = f.text_area :description, rows: 5, :class => 'col-xs-6 col-offset-xs-3'
+  .form-group.row
+    %h3 Price:
+  .row
+    = f.text_field :price, percision: 5, scale: 2, :class => 'col-xs-6 col-offset-xs-3'
+  .form-group.row
+    =f.file_field :photo
+  .form-group.row
+    = f.submit "#{action_name}", :class => 'btn btn-primary'

@@ -1,0 +1,38 @@
+%h1 Order Confirmation
+- binding.pry
+.cart
+	%table.table-bordered.table-striped.col-sm-12
+		%tr
+			%th Name
+			%th Quantity
+			%th Price
+		- session_cart.items.each do |i|
+			%tr
+				%td= i.product.name
+				%td= i.quantity
+				%td= i.price
+
+.row
+	.payment.col-sm-6
+		.well
+			%h2 Payment
+			%div= session_cart.payment.card_type       
+			%div= session_cart.payment.name       
+			%div= session_cart.payment.card_number
+			%div= session_cart.payment.exp_date   
+			%div= session_cart.payment.cvv        
+			%div= session_cart.payment.address    
+			%div= session_cart.payment.city       
+			%div= session_cart.payment.state      
+			%div= session_cart.payment.zip         
+	.shipping.col-sm-6
+		.well
+			%h2 Shipping
+			%div= session_cart.shipping.address
+			%div= session_cart.shipping.city   
+			%div= session_cart.shipping.state  
+			%div= session_cart.shipping.zip
+.buttons
+	= link_to 'Cancel', products_url, class: 'btn btn-default'
+	- 
+	= link_to 'Confirm', order_confirmations_url, class: 'btn btn-success', method: :post

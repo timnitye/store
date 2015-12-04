@@ -6,8 +6,7 @@ class CreateShippings < ActiveRecord::Migration
       t.string :state
       t.string :zip
       t.references :user, index: true, foreign_key: true
-      t.references :cart, index: true, foreign_key: true
-
+    
       t.timestamps null: false
     end
   end

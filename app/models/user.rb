@@ -11,4 +11,19 @@
 
 class User < ActiveRecord::Base
 	has_many :carts
+	has_many :user_roles
+	has_many :roles, through: :user_roles
+
+	def current_cart
+		carts.last
+	end
+
+	def has_open_cart?
+		current_cart.present?
+	end
+
+	def has_role?(role_name)
+		roles.where(name: role_name).present?
+	end
+
 end

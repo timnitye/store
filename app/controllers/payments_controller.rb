@@ -1,24 +1,24 @@
 class PaymentsController < ApplicationController
-  before_action :set_payment, only: [:show, :edit, :update, :destroy]
+  before_action do
+    @cart = session_cart
+  end
 
   # GET /payments/new
   def new
     @payment = Payment.new
   end
 
-
-  # POST /payments
-  # POST /payments.json
   def create
-    @payment = Payment.new(payment_params)
+    payment = Payment.new(payment_params)
+    @cart.payment = payment
 
     respond_to do |format|
-      if @payment.save
-        format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
-        format.json { render :show, status: :created, location: @payment }
+      if payment.save 
+        @cart.save
+        @cart.submit_payment!
+        format.html { redirect_to @cart.next_step, notice: 'Payment was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @payment.errors, status: :unprocessable_entity }
       end
     end
   end

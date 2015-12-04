@@ -1,0 +1,10 @@
+
+
+- if @cart
+  %h3 Thank you for your order!
+- else
+  %h5 Your order has been confirmed
+  %small You cannot refresh this page.
+  %p To see your order, go to #{link_to "orders page" , '#'}
+    
+.buttons= link_to 'Continue Shopping', products_url, class: 'btn btn-default'

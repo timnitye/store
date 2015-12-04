@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+
+gem 'awesome_print'
+gem 'workflow', '~> 1.2'
 gem 'pry'
 gem "mini_magick"
 gem 'carrierwave'
