@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   
   get 'checkout/index'
-
   get 'products/new' => 'products#new'
   root 'products#index'
   get 'checkout' => 'checkout#index'
   get 'add_to_cart' => 'add_to_cart#index' 
   get 'shopping_cart' => 'shopping_cart#index'
+  get 'order' => 'order#index'
   get    'signin'  => 'sessions#new',     as: :signin
   delete 'signout' => 'sessions#destroy', as: :signout
 
@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   resources :payments, only: [:new, :create]
   resources :products
   resources :order_confirmations, only: [:index, :show, :create]
-  resources :orders, only: [:index, :show]
+  resources :orders, only: [:index, :show, :update]
+  resources :add_to_cart, only: [:destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -5,4 +5,10 @@ class ApplicationController < ActionController::Base
 
   include ApplicationHelper
 
+  def authorize
+    unless admin?
+      redirect_to signin_url
+      return false
+    end
+  end
 end

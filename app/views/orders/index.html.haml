@@ -1,0 +1,56 @@
+.row
+  .col-xs-12.col-sm-8
+    %h1 Orders
+    .orders
+      - @orders.each do |o|
+        .order.container{class: "order-#{o.id}"}
+          .row.labels
+            .col-md-2 Order Id
+            .col-md-2 Date
+            .col-md-2 Status
+            .col-md-2 Amount
+          .row.detail
+            .col-md-2.id= o.id
+            .col-md-2.date= o.created_at
+            .col-md-2.status= o.workflow_state
+            .col-md-2.total= o.amount
+            .col-md-4
+              .btn-group
+                = link_to 'cancel', '#', class: 'btn btn-default'
+                - if o.new?
+                  = link_to 'mark shipped', '#', class: "btn btn-primary ship", 'data-order-id' => o.id
+                - else
+                  = link_to 'mark shipped', '#', class: "btn btn-default ship", 'data-order-id' => o.id
+          .row
+            .col-md-6.col-md-offset-2
+              %table.table.table-bordered.table-striped
+                - o.cart.items.each do |item|
+                  %tr
+                    %td= image_tag item.product.photo.url(:tiny)
+                    %td= item.quantity
+:javascript 
+  $('.ship').on('click', function(e){
+    e.preventDefault();
+    order_id = $(this).data('order-id');
+    var url = '/orders/' + order_id;
+    
+    console.log('button clicked!')
+
+    $.ajax({
+      url: url,
+      method: 'PUT',
+      dataType: 'json'
+    })
+    .done(function(data){
+      var order = data;
+      var order_div = $('.order-' + order.id)
+      order_div.find('.status').html(order.workflow_state);
+      var ship_btn = $('.ship[data-order-id='+order_id+']');
+      ship_btn.removeClass('btn-primary').addClass('btn-default');
+      ship_btn.unbind('click');
+    })
+    .fail(function(){
+      console.log('ERROR!!!! ajax call failed');
+    });
+    
+  });

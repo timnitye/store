@@ -2,10 +2,26 @@
 - if @items
 	%table.table-bordered.striped
 		-@items.each do |i|
-			%tr.item
+			%tr.item{class: "item-#{i.id}"}
 				%td.name= i.product.name
 				%td.quantity= i.quantity
 				%td.price= i.price
+				%td= link_to "x", '#', class: 'btn btn-warning btn-xs delete-item-link', 'data-item-id' => i.id
 	=link_to 'Checkout', checkout_url, class: 'btn btn-primary'
 - else
 	%h2 Your cart is empty
+
+
+:javascript
+	
+	$('.delete-item-link').on('click',function(e){
+		e.preventDefault();
+		var item_id = $(this).data('item-id');
+		$.ajax({
+			url: '/add_to_cart/' + item_id,
+			method: 'DELETE'
+		})
+		.done(function(data){
+			$('.item.item-' + data.deleted_item).remove();
+		})
+	});

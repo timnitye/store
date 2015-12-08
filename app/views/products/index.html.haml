@@ -3,10 +3,30 @@
 	- @products.each do |p|
 		.col-xs-6.col-sm-4.col-md-3
 			.product
-				= link_to image_tag(p.photo.url(:thumb)), product_url(p)				 
+				= link_to image_tag(p.photo.url(:thumb)), product_url(p)
 				%h3.name= link_to truncate(p.name, length: 15), product_url(p) 
 				%p.description= truncate p.description, length: 75
 				%p.price= number_to_currency(p.price, :unit => "$")
-				= link_to 'BUY', add_to_cart_url(product_id: p.id), class: 'btn btn-md buy-btn' 
+				= link_to 'BUY', '#', class: 'btn btn-md buy-btn', 'data-id' => p.id 
+:javascript
+	$(document).ready(function(){
+		$('.buy-btn').on('click', function(e){
+			e.preventDefault();
+			var id = $(this).data('id');
+			console.log(id);
+			$.ajax({
+				url: '/add_to_cart',
+				dataType: 'json',
+				data: {product_id: id}
 
+			})
+			.done(function(data){
+				console.log(data);
+				$('.items-count').html(data.items_count);
+			})
+			.fail(function(res, status){
+
+			});
+		});
+	});
 

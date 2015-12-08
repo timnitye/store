@@ -10,8 +10,10 @@
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li.active
-          =link_to products_url do
+          = link_to products_url do
             %span.glyphicon.glyphicon-home
+        - if admin?
+          %li= link_to 'Orders', orders_url
       /   %li
       /     %a{:href => "#"} Link
       /   %li.dropdown
@@ -43,6 +45,7 @@
         %li
           =link_to shopping_cart_url do
             %span.glyphicon.glyphicon-shopping-cart
+            %span.badge.items-count
         %li
           =link_to 'Sign In', signin_url unless current_user
           =link_to( 'Logout', signout_url, {method: :delete} ) if current_user

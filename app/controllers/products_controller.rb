@@ -47,10 +47,5 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def authorize
-    unless admin?
-      redirect_to signin_url
-      return false
-    end
-  end
+  
 end

@@ -1,16 +1,6 @@
 class AddToCartController < ApplicationController
 	def index
 		product_id = params[:product_id].to_i
-		
-		# current_user_id = session[:current_user_id]
-		# @product = Product.find(product_id)
-		# @user = User.find(current_user_id)
-		# @item = Item.new
-		# @item.product = @product
-		# @item.user = @user
-		# @item.quantity = 1
-		# @item.save
-		# redirect_to products_url
 
 		#find session cart
 		cart = Cart.find(session[:cart_id]) if session[:cart_id]
@@ -39,7 +29,28 @@ class AddToCartController < ApplicationController
 		#store cart_id in session for later use
 		session[:cart_id] = cart.id
 		
-		redirect_to products_url
+		respond_to do |format|
+			format.html{
+				redirect_to products_url
+			}
+			
+			format.json{ 
+				render json: {items_count: cart.items.count} 
+			}
+		end
+	end
+
+	def destroy
+		# product_id = params[:product_id];
+		# cart = Cart.find(session[:cart_id])
+		# deletable_item = cart.items.select{|i| i.product.id == product_id}
+		# deletable_item.each{|i| i.destroy}
+
+		item_id = params[:id]
+		item = Item.find(item_id)
+		item.delete
+
+		render json: {deleted_item: item_id}
 	end
 	
 end
